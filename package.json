@@ -1,0 +1,17 @@
+{
+  "name": "go-chart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "daryl110",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.26.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Daryl110/go-chart.git"
+  }
+}
