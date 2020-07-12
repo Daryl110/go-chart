@@ -1,17 +1,17 @@
 {
   "name": "@daryl110/go-chart",
   "version": "1.0.0",
-  "description": "",
+  "description": "library to easily build charts",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
   "author": "daryl110",
   "license": "MIT",
-  "dependencies": {
-    "moment": "^2.26.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Daryl110/go-chart.git"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "d3": "^5.16.0",
+    "moment": "^2.26.0"
   }
 }

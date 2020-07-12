@@ -1,6 +1,6 @@
 const ChartJSModule = module.exports;
 const numUtils = require('../utils/num.utils');
-const chartJS = require('../../lib/chartjs/Chart');
+const chartJS = require('chart.js');
 
 const createColor = (
   {
@@ -12,7 +12,7 @@ const createColor = (
 ) => `rgba(${red}, ${green}, ${blue}, ${opacity})`;
 
 /**
- * Bar chart build with library chart.js
+ * Bar chart build with library chartjs.module.js
  * @param title
  * @param htmlElementContainer
  * @param idElement

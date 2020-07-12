@@ -1,11 +1,7 @@
-const { barChart } = require('./src/modules/chart');
-const { treeChart } = require('./src/modules/d3');
+const chartJSModule = require('./src/modules/chartjs.module');
+const D3Module = require('./src/modules/d3.module');
 
 module.exports = {
-  chartJS: {
-    barChart
-  },
-  D3: {
-    treeChart
-  }
+  chartJS: chartJSModule,
+  D3: D3Module
 }
