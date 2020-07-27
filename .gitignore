@@ -210,6 +210,6 @@ fabric.properties
 .idea/$CACHE_FILE$
 
 # docs
-./docs/
+/docs/
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm,node
