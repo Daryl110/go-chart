@@ -2,9 +2,6 @@
  * @namespace numUtils
  * @desc numerical utils function module
  */
-const numUtils = {
-    getRandomInt
-};
 
 /**
  * @memberOf numUtils
@@ -16,4 +13,6 @@ const numUtils = {
  */
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
-module.exports = numUtils;
+module.exports = {
+    getRandomInt
+};
