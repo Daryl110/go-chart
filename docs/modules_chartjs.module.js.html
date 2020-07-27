@@ -1,4 +1,91 @@
-const numUtils = require('../utils/num.utils');
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> modules/chartjs.module.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-ChartJSModule.html">ChartJSModule</a></li><li><a href="module-D3Module.html">D3Module</a></li></ul><h3>Namespaces</h3><ul><li><a href="numUtils.html">numUtils</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>modules/chartjs.module.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const numUtils = require('../utils/num.utils');
 const chartJS = require('chart.js');
 
 /**
@@ -84,7 +171,7 @@ const createDatasetColor = (
  * @param {array} labels - array of strings containing the labels of each value within the dataset
  * @param {array} datasets - array of objects containing the dataset groups taking into account the group of labels,
  * with the structure:
- * <code> [
+ * &lt;code> [
  *         {
  *           data: array // array of numbers containing the values to be graphed,
  *           label: string // title of the dataset,
@@ -92,7 +179,7 @@ const createDatasetColor = (
  *           borderColor: string // rgba string the border color of the value,
  *           backgroundOpacity: boolean
  *         }
- * ]</code>
+ * ]&lt;/code>
  * @param {boolean} horizontal - Boolean that demarcates whether the chart is horizontal or not
  * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
  * @param {function} clickEventForEachElement - callback function on event click on chart element
@@ -191,14 +278,14 @@ const barChart = (
  * @param {array} labels - array of strings containing the labels of each value within the dataset
  * @param {array} datasets - array of objects containing the dataset groups taking into account the group of labels,
  * with the structure:
- * <code> [
+ * &lt;code> [
  *         {
  *           data: array // array of numbers containing the values to be graphed,
  *           label: string // title of the dataset,
  *           backgroundColor: string // rgba string of the background color of the value,
  *           backgroundOpacity: boolean
  *         }
- * ]</code>
+ * ]&lt;/code>
  * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
  * @param {function} clickEventForEachElement - callback function on event click on chart element
  * @returns {*|{}}
@@ -222,7 +309,7 @@ const pieChart = (
   const [{ data: { length }}] = datasets;
   let colors = [];
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i &lt; length; i++) {
     colors.push(createDatasetColor());
   }
 
@@ -238,12 +325,12 @@ const pieChart = (
   ) => {
     const backgroundColorLabel = [];
 
-    if ((backgroundColor || backgroundOpacity) && flag) {
+    if ((backgroundColor || backgroundOpacity) &amp;&amp; flag) {
       colors = [];
     }
 
     let count = 0;
-    if (!backgroundColor && !backgroundOpacity) {
+    if (!backgroundColor &amp;&amp; !backgroundOpacity) {
       data.forEach(() => {
         const { backgroundColorLabelItem } = colors[count];
         backgroundColorLabel.push(backgroundColorLabelItem);
@@ -308,3 +395,32 @@ const pieChart = (
 }
 
 module.exports = ChartJSModule;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.5</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

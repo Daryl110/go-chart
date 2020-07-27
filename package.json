@@ -9,9 +9,16 @@
     "type": "git",
     "url": "https://github.com/Daryl110/go-chart.git"
   },
+  "scripts": {
+    "doc": "jsdoc -c ./jsdoc.json -R README.md ./src/modules ./src/utils ./index.js --debug"
+  },
   "dependencies": {
     "chart.js": "^2.9.3",
     "d3": "^5.16.0",
     "moment": "^2.26.0"
+  },
+  "devDependencies": {
+    "better-docs": "^2.3.0",
+    "jsdoc": "^3.6.5"
   }
 }
