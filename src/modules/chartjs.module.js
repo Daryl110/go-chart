@@ -1,7 +1,24 @@
-const ChartJSModule = module.exports;
 const numUtils = require('../utils/num.utils');
 const chartJS = require('chart.js');
 
+/**
+ * @module ChartJSModule
+ * @desc module of chartjs
+ */
+const ChartJSModule = {
+  barChart,
+  pieChart
+};
+
+/**
+ * @function
+ * @desc function to create rgba colors
+ * @param {number} red - number between 0 and 255 that represents the amount of red within the rgba
+ * @param {number} green - number between 0 and 255 that represents the amount of green within the rgba
+ * @param {number} blue - number between 0 and 255 that represents the amount of blue within the rgba
+ * @param {number} opacity - number between 0 and 1 that represents the amount of opacity within the rgba
+ * @returns {string} value rgba color
+ */
 const createColor = (
     {
       red,
@@ -11,6 +28,14 @@ const createColor = (
     }
 ) => `rgba(${red}, ${green}, ${blue}, ${opacity})`;
 
+/**
+ * @function
+ * @desc function to create colors inside datasets
+ * @param {string} backgroundColor - background color for a dataset
+ * @param {string} borderColor - border color for a dataset
+ * @param {boolean} backgroundOpacity - background color opacity is true or false
+ * @returns {{borderColorLabelItem: (string|undefined), backgroundColorLabelItem: string}} colors to dataset
+ */
 const createDatasetColor = (
     backgroundColor = undefined,
     borderColor = undefined,
@@ -51,17 +76,29 @@ const createDatasetColor = (
 };
 
 /**
- * Bar chart build with library chartjs.module.js
- * @param title
- * @param htmlElementContainer
- * @param idElement
- * @param labels
- * @param datasets
- * @param horizontal
- * @param positionOfLegend
- * @param clickEventForEachElement
+ * @function
+ * @desc function to build a bar chart
+ * @param {string} title - chart title
+ * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
+ * @param {string} idElement - chart id
+ * @param {array} labels - array of strings containing the labels of each value within the dataset
+ * @param {array} datasets - array of objects containing the dataset groups taking into account the group of labels,
+ * with the structure:
+ * <code> [
+ *         {
+ *           data: array // array of numbers containing the values to be graphed,
+ *           label: string // title of the dataset,
+ *           backgroundColor: string // rgba string of the background color of the value,
+ *           borderColor: string // rgba string the border color of the value,
+ *           backgroundOpacity: boolean
+ *         }
+ * ]</code>
+ * @param {boolean} horizontal - Boolean that demarcates whether the chart is horizontal or not
+ * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
+ * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @return {*|{}}
  */
-ChartJSModule.barChart = (
+const barChart = (
     title,
     htmlElementContainer,
     idElement,
@@ -122,6 +159,12 @@ ChartJSModule.barChart = (
       legend: {
         position: positionOfLegend
       },
+      /**
+       * @function
+       * @desc callback function on event click on chart element
+       * @param {object} $event - event that is obtained by clicking on the chart element
+       * @returns {null|*} callback
+       */
       onClick: ($event) => {
         const [item] = barChart.getElementAtEvent($event);
 
@@ -139,7 +182,28 @@ ChartJSModule.barChart = (
   return barChart;
 };
 
-ChartJSModule.pieChart = (
+/**
+ * @function
+ * @desc function to build a pie chart
+ * @param {string} title - chart title
+ * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
+ * @param {string} idElement - chart id
+ * @param {array} labels - array of strings containing the labels of each value within the dataset
+ * @param {array} datasets - array of objects containing the dataset groups taking into account the group of labels,
+ * with the structure:
+ * <code> [
+ *         {
+ *           data: array // array of numbers containing the values to be graphed,
+ *           label: string // title of the dataset,
+ *           backgroundColor: string // rgba string of the background color of the value,
+ *           backgroundOpacity: boolean
+ *         }
+ * ]</code>
+ * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
+ * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @returns {*|{}}
+ */
+const pieChart = (
     title,
     htmlElementContainer,
     idElement,
@@ -242,3 +306,5 @@ ChartJSModule.pieChart = (
 
   return pieChart;
 }
+
+module.exports = ChartJSModule;
