@@ -1,14 +1,11 @@
-const numUtils = require('../utils/num.utils');
-const chartJS = require('chart.js');
-
 /**
  * @module ChartJSModule
  * @desc module of chartjs
  */
-const ChartJSModule = {
-  barChart,
-  pieChart
-};
+
+const numUtils = require('../utils/num.utils');
+const chartJS = require('chart.js');
+
 
 /**
  * @function
@@ -307,4 +304,7 @@ const pieChart = (
   return pieChart;
 }
 
-module.exports = ChartJSModule;
+module.exports = {
+  barChart,
+  pieChart
+};

@@ -1,13 +1,9 @@
-const d3 = require('d3/index');
-
 /**
  * @module D3Module
  * @desc module of d3
  */
-const D3Module = {
-  collapsableTreeChart,
-  graphChart
-};
+
+const d3 = require('d3/index');
 
 /**
  * @function
@@ -259,4 +255,7 @@ const graphChart = (
   htmlElementContainer.append(chart);
 }
 
-module.exports = D3Module;
+module.exports = {
+  collapsableTreeChart,
+  graphChart
+};
