@@ -6,6 +6,7 @@ go-chart is a project in development, which allows by calling a simple function 
 * <a href="https://www.chartjs.org/">chart.js</a>
     * bar chart
     * pie chart
+    * line chart
 * <a href="https://d3js.org/">d3.js</a>
     * collapsible tree chart
     * graph chart
