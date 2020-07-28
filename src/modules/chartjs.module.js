@@ -304,7 +304,123 @@ const pieChart = (
   return pieChart;
 }
 
+
+
+
+
+
+/**
+ * @function
+ * @desc function to build a bar chart
+ * @param {string} title - chart title
+ * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
+ * @param {string} idElement - chart id
+ * @param {array} labels - array of strings containing the labels of each value within the dataset
+ * @param {array} datasets - array of objects containing the dataset groups taking into account the group of labels,
+ * with the structure:
+ * <code> [
+ *         {
+ *           data: array // array of numbers containing the values to be graphed,
+ *           label: string // title of the dataset,
+ *           backgroundColor: string // rgba string of the background color of the value,
+ *           borderColor: string // rgba string the border color of the value,
+ *           backgroundOpacity: boolean
+ *         }
+ * ]</code>
+ * @param {boolean} horizontal - Boolean that demarcates whether the chart is horizontal or not
+ * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
+ * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @return {*|{}}
+ */
+const lineChart = (
+  title,
+  htmlElementContainer,
+  idElement,
+  labels,
+  datasets,
+  horizontal = false,
+  positionOfLegend = 'top',
+  clickEventForEachElement = () => { }
+) => {
+const canvas = document.createElement('canvas');
+
+canvas.id = idElement;
+htmlElementContainer.append(canvas);
+
+const datasetsArray = [];
+
+datasets.forEach((
+    {
+      data,
+      label,
+      backgroundColor = undefined,
+      borderColor = undefined,
+      backgroundOpacity = false
+    }
+) => {
+  const { borderColorLabelItem } = createDatasetColor(borderColor);
+
+  datasetsArray.push({
+    label,
+    data,
+    //backgroundColor: backgroundColorLabelItem,
+    borderColor: borderColorLabelItem,
+    borderWidth: 4,
+    fill: false
+  })
+});
+
+let lineChart = { };
+
+lineChart = new chartJS(idElement, {
+  type: horizontal ? 'horizontalBar' : 'line',
+  data: {
+    labels,
+    datasets: datasetsArray
+  },
+  options: {
+    title: {
+      display: true,
+      text: title
+    },
+    responsive: true,
+    legend: {
+      position: positionOfLegend
+    },
+   scales: {
+     xAxes: [{
+       display: true,
+     }],
+     yAxes: [{
+       display: true,
+       type: 'logarithmic'
+     }]
+   },
+    /**
+     * @function
+     * @desc callback function on event click on chart element
+     * @param {object} $event - event that is obtained by clicking on the chart element
+     * @returns {null|*} callback
+     */
+    onClick: ($event) => {
+      const [item] = lineChart.getElementAtEvent($event);
+
+      if (!item) return null;
+
+      const { _datasetIndex: datasetIndex, _index: index } = item;
+      const label = lineChart.data.labels[index];
+      const value = lineChart.data.datasets[datasetIndex].data[index];
+
+      return clickEventForEachElement(value, label, datasetIndex, index, lineChart);
+    }
+  }
+});
+
+return lineChart;
+};
+
 module.exports = {
   barChart,
-  pieChart
+  pieChart,
+  lineChart
 };
