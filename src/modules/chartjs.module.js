@@ -512,9 +512,140 @@ const scatterChart = (
   return scatterChart;
 };
 
+/**
+ * @function
+ * @desc function to build a pie chart
+ * @param {string} title - chart title
+ * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
+ * @param {string} idElement - chart id
+ * @param {array} labels - array of strings containing the labels of each value within the dataset
+ * @param {array} datasets - array of objects containing the dataset groups taking into account the group of labels,
+ * with the structure:
+ * <code> [
+ *         {
+ *           data: array // array of numbers containing the values to be graphed,
+ *           label: string // title of the dataset,
+ *           backgroundColor: string // rgba string of the background color of the value,
+ *           backgroundOpacity: boolean
+ *         }
+ * ]</code>
+ * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
+ * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @returns {*|{}}
+ */
+const doughnutChart = (
+  title,
+  htmlElementContainer,
+  idElement,
+  labels,
+  datasets,
+  positionOfLegend = 'top',
+  clickEventForEachElement = () => { }
+) => {
+  const canvas = document.createElement('canvas');
+  const datasetsArray = [];
+  let doughnutChart = {};
+
+  canvas.id = idElement;
+  htmlElementContainer.append(canvas);
+
+  const [{ data: { length } }] = datasets;
+  let colors = [];
+
+  for (let i = 0; i < length; i++) {
+    colors.push(createDatasetColor());
+  }
+
+  let flag = true;
+
+  datasets.forEach((
+    {
+      data,
+      label,
+      backgroundColor = undefined,
+      backgroundOpacity = false
+    }
+  ) => {
+    const backgroundColorLabel = [];
+
+    if ((backgroundColor || backgroundOpacity) && flag) {
+      colors = [];
+    }
+
+    let count = 0;
+    if (!backgroundColor && !backgroundOpacity) {
+      data.forEach(() => {
+        const { backgroundColorLabelItem } = colors[count];
+        backgroundColorLabel.push(backgroundColorLabelItem);
+        count++;
+      });
+    } else {
+      flag = false;
+      data.forEach(() => {
+        let backgroundColorLabelItem;
+        try {
+          const { backgroundColorLabelItem: color } = colors[count];
+          backgroundColorLabelItem = color;
+        } catch (e) {
+          colors.push(createDatasetColor(backgroundColor, undefined, backgroundOpacity));
+          const { backgroundColorLabelItem: color } = colors[count];
+          backgroundColorLabelItem = color;
+        }
+        backgroundColorLabel.push(backgroundColorLabelItem);
+        count++;
+      });
+    }
+
+    console.log(backgroundColorLabel);
+
+    datasetsArray.push({
+      label,
+      data,
+      backgroundColor: !backgroundColor ? backgroundColorLabel : backgroundColor
+    })
+  });
+
+  doughnutChart = new chartJS(idElement, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: datasetsArray
+    },
+    options: {
+      title: {
+        display: true,
+        text: title
+      },
+      responsive: true,
+      legend: {
+        position: positionOfLegend
+      },
+      animation: {
+        animateRotate: true,
+        animateScale: true
+      },
+      onClick: ($event) => {
+        const [item] = doughnutChart.getElementAtEvent($event);
+
+        if (!item) return null;
+
+        const { _datasetIndex: datasetIndex, _index: index } = item;
+        const label = doughnutChart.data.labels[index];
+        const value = doughnutChart.data.datasets[datasetIndex].data[index];
+
+        return clickEventForEachElement(value, label, datasetIndex, index, doughnutChart);
+      }
+    }
+  });
+
+  return doughnutChart;
+}
+
 module.exports = {
   barChart,
   pieChart,
+  doughnutChart,
   lineChart,
   scatterChart
 };
+
