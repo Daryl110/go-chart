@@ -775,11 +775,117 @@ const polarAreaChart = (
   return polarAreaChart;
 };
 
+/**
+ * @function
+ * @desc function to build a pie chart
+ * @param {string} title - chart title
+ * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
+ * @param {string} idElement - chart id
+ * @param {array} labels - array of strings containing the labels of each value within the dataset
+ * @param {array} datasets - array of objects containing the dataset groups taking into account the group of labels,
+ * with the structure:
+ * <code> [
+ *         {
+ *           data: array // array of numbers containing the values to be graphed,
+ *           label: string // title of the dataset,
+ *           backgroundColor: string // rgba string of the background color of the value,
+ *           backgroundOpacity: boolean
+ *         }
+ * ]</code>
+ * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
+ * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @returns {*|{}}
+ */
+const radarChart = (
+  title,
+  htmlElementContainer,
+  idElement,
+  labels,
+  datasets,
+  positionOfLegend = 'top',
+  clickEventForEachElement = () => { }
+) => {
+  const canvas = document.createElement('canvas');
+
+  canvas.id = idElement;
+  htmlElementContainer.append(canvas);
+
+  const datasetsArray = [];
+
+  datasets.forEach((
+    {
+      data,
+      label,
+      backgroundColor = undefined,
+      borderColor = true,
+      backgroundOpacity = true,
+    }
+  ) => {
+    const { backgroundColorLabelItem, borderColorLabelItem } = createDatasetColor(backgroundColor, borderColor, backgroundOpacity);
+
+    datasetsArray.push({
+      label,
+      data,
+      backgroundColor: backgroundColorLabelItem,
+      borderColor: borderColorLabelItem,
+      borderWidth: 1,
+    })
+  });
+
+  let radarChart = {};
+
+  radarChart = new chartJS(idElement, {
+    type: 'radar',
+    data: {
+      labels,
+      datasets: datasetsArray
+    },
+    options: {
+      title: {
+        display: true,
+        text: title
+      },
+      responsive: true,
+      legend: {
+        position: positionOfLegend
+      },
+      scale: {
+        angleLines: {
+          display: false
+        },
+        ticks: {
+          suggestedMin: 50,
+          suggestedMax: 100
+        }
+      },
+      /**
+       * @function
+       * @desc callback function on event click on chart element
+       * @param {object} $event - event that is obtained by clicking on the chart element
+       * @returns {null|*} callback
+       */
+      onClick: ($event) => {
+        const [item] = radarChart.getElementAtEvent($event);
+        if (!item) return null;
+
+        const { _datasetIndex: datasetIndex, _index: index } = item;
+        const label = radarChart.data.labels[index];
+        const value = radarChart.data.datasets[datasetIndex].data[index];
+
+        return clickEventForEachElement(value, label, datasetIndex, index, radarChart);
+      }
+    }
+  });
+
+  return radarChart;
+};
+
 module.exports = {
   barChart,
   pieChart,
   doughnutChart,
   lineChart,
   scatterChart,
-  polarAreaChart
+  polarAreaChart,
+  radarChart
 };
