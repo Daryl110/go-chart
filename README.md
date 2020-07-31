@@ -9,6 +9,7 @@ go-chart is a project in development, which allows by calling a simple function 
     * line chart
     * doughnut chart
     * scatter chart
+    * polar area chart
 * <a href="https://d3js.org/">d3.js</a>
     * collapsible tree chart
     * graph chart
