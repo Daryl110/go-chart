@@ -11,10 +11,79 @@ const d3 = require('d3/index');
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
  * @param {string} idElement - chart id
  * @param {object} data - data to be plotted within the chart, with the structure:
- * <code>data: { name: string, children: array[data] }</code>
+ * <code>{ name: string, children: array[data] }</code>
  * @param {number} width - chart width inside the container
  * @param {number} height - chart height inside the container
  * @param {string} backgroundColor - background color for the chart
+ * @example D3.collapsableTreeChart(
+ *    document.getElementById('charts'),
+ *    'collapsable_tree_chart',
+ *    {
+ *     name: 'root',
+ *     children: [
+ *       {
+ *         name: 'node_1',
+ *         children: [
+ *           {
+ *             name: 'node_1.1',
+ *             children: [
+ *               {
+ *                 name: 'node_1.1.1'
+ *               },
+ *               {
+ *                 name: 'node_1.1.2'
+ *               },
+ *               {
+ *                 name: 'node_1.1.3'
+ *               }
+ *             ]
+ *           }
+ *         ]
+ *       },
+ *       {
+ *         name: 'node_2',
+ *         children: [
+ *           {
+ *             name: 'node_2.1',
+ *             children: [
+ *               {
+ *                       name: 'node_2.1.1'
+ *               },
+ *               {
+ *                 name: 'node_2.1.2'
+ *               },
+ *               {
+ *                 name: 'node_2.1.3',
+ *                 children: [
+ *                   {
+ *                     name: 'node_2.1.3.1',
+ *                     children: [
+ *                       {
+ *                         name: 'node_2.1.3.1.1'
+ *                       },
+ *                       {
+ *                         name: 'node_2.1.3.1.2'
+ *                       },
+ *                       {
+ *                         name: 'node_2.1.3.1.3'
+ *                       }
+ *                     ]
+ *                   }
+ *                 ]
+ *               }
+ *             ]
+ *           },
+ *           {
+ *             name: 'node_2.2'
+ *           },
+ *           {
+ *             name: 'node_2.3'
+ *           },
+ *         ]
+ *       }
+ *     ]
+ *   }
+ * );
  */
 const collapsableTreeChart = (
     htmlElementContainer,
@@ -150,7 +219,7 @@ const collapsableTreeChart = (
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
  * @param {string} idElement - chart id
  * @param {object} data - data to be plotted within the chart, with the structure:
- * <code>data: {
+ * <code>{
  *     nodes: [{ id: string, group: number }],
  *     arches: [{ source: string, target: string, value: object }]
  * }</code>
@@ -161,6 +230,36 @@ const collapsableTreeChart = (
  * @param {number} width - chart width inside the container
  * @param {number} height - chart height inside the container
  * @param {string} backgroundColor - background color for the chart
+ * @example D3.graphChart(
+ *   document.getElementById('charts'),
+ *   'graph_chart',
+ *   {
+ *      nodes: [
+ *        { id: 'Armenia', group: 1 },
+ *        { id: 'Calarca', group: 1 },
+ *        { id: 'Circasia', group: 1 },
+ *        { id: 'Pereira', group: 2 },
+ *        { id: 'Cali', group: 3 },
+ *        { id: 'Bogota', group: 4 },
+ *        { id: 'Soacha', group: 4 },
+ *        { id: 'Medellin', group: 5 },
+ *        { id: 'Itagui', group: 5 },
+ *        { id: 'Envigado', group: 5 }
+ *      ],
+ *      arches: [
+ *        { source: 'Armenia', target: 'Calarca', value: 5 },
+ *        { source: 'Armenia', target: 'Circasia', value: 5 },
+ *        { source: 'Cali', target: 'Medellin', value: 5 },
+ *        { source: 'Medellin', target: 'Itagui', value: 5 },
+ *        { source: 'Armenia', target: 'Medellin', value: 5 },
+ *        { source: 'Cali', target: 'Bogota', value: 5 },
+ *        { source: 'Bogota', target: 'Soacha', value: 5 },
+ *        { source: 'Armenia', target: 'Bogota', value: 5 },
+ *        { source: 'Medellin', target: 'Envigado', value: 5 },
+ *        { source: 'Armenia', target: 'Pereira', value: 5 }
+ *      ]
+ *    }
+ * );
  */
 const graphChart = (
     htmlElementContainer,

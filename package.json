@@ -10,7 +10,7 @@
     "url": "https://github.com/Daryl110/go-chart.git"
   },
   "scripts": {
-    "doc": "jsdoc -c ./jsdoc.json -R README.md ./src/modules ./src/utils ./index.js --debug"
+    "doc": "jsdoc -c ./jsdoc.json -R README.md ./src/modules ./src/utils ./index.js --debug && start chrome ./docs/index.html"
   },
   "dependencies": {
     "chart.js": "^2.9.3",
