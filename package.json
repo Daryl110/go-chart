@@ -20,5 +20,6 @@
   "devDependencies": {
     "better-docs": "^2.3.0",
     "jsdoc": "^3.6.5"
-  }
+  },
+  "keywords": ["business intelligence", "Bi", "nodejs", "js", "chart", "d3", "chartjs"]
 }
