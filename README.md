@@ -33,6 +33,6 @@ go-chart is a project in development, which allows by calling a simple function 
 
   To use the go-chart library it consists of the following, each library implemented within it is called a module and each public function of each graphical module is called a     graph, taking into account:
 
-  <code>modulo.chart(\<parameters\>);</code>
+  <code>module.chart(\<parameters\>);</code>
   
   [more info]()
