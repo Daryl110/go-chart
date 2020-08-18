@@ -10,7 +10,7 @@
     "url": "https://github.com/Daryl110/go-chart.git"
   },
   "scripts": {
-    "doc": "jsdoc -c ./jsdoc.json -R README.md ./src/modules ./src/utils ./index.js --debug && start chrome ./docs/index.html"
+    "doc": "jsdoc -c ./jsdoc.json && start chrome ./docs/index.html"
   },
   "dependencies": {
     "chart.js": "^2.9.3",
@@ -21,5 +21,12 @@
     "better-docs": "^2.3.0",
     "jsdoc": "^3.6.5"
   },
-  "keywords": ["business intelligence", "Bi", "nodejs", "js", "chart", "d3", "chartjs"]
+  "keywords": ["business intelligence", "Bi", "nodejs", "js", "chart", "d3", "chartjs"],
+  "contributors": [
+    {
+      "name": "JhonQ",
+      "email": "quirama80@gmail.com",
+      "url": "https://github.com/jhonquirama"
+    }
+  ]
 }
