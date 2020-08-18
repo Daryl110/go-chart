@@ -11,7 +11,7 @@ go-chart is a project in development, which allows by calling a simple function 
     * [doughnut chart](https://github.com/Daryl110/go-chart/wiki#doughnut-chart)
     * [polar area chart](https://github.com/Daryl110/go-chart/wiki#polar-area-chart)
     * [radar chart](https://github.com/Daryl110/go-chart/wiki#radar-chart)
-* <a href="https://d3js.org/">d3.js</a>
+* [D3](https://d3js.org/)
     * [collapsible tree chart](https://github.com/Daryl110/go-chart/wiki#collapsible-tree-chart)
     * [graph chart](https://github.com/Daryl110/go-chart/wiki#graph-chart)
     
@@ -35,4 +35,4 @@ go-chart is a project in development, which allows by calling a simple function 
 
   <code>module.chart(\<parameters\>);</code>
   
-  [more info]()
+  [more info](https://daryl110.github.io/go-chart-doc/index.html)
