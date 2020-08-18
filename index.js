@@ -1,5 +1,5 @@
-const chartJSModule = require('./src/modules/chartjs.module');
-const D3Module = require('./src/modules/d3.module');
+const chartJSModule = require('./src/modules/chartjs/chartjs.module');
+const D3Module = require('./src/modules/d3/d3.module');
 
 module.exports = {
   chartJS: chartJSModule,

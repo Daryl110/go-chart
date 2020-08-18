@@ -2,6 +2,19 @@
   "opts": {
     "template": "node_modules/better-docs",
     "encoding": "utf8",
-    "destination": "./docs/"
+    "destination": "./docs/",
+    "readme": "./README.md"
+  },
+  "source": {
+    "include": [
+      "./src/modules",
+      "./src/modules/d3",
+      "./src/modules/d3/charts",
+      "./src/modules/chartjs",
+      "./src/modules/chartjs/charts",
+      "./src/modules/chartjs/others",
+      "./src/utils",
+      "./index.js"
+    ]
   }
 }
