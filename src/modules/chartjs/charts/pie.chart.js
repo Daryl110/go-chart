@@ -7,6 +7,7 @@ const {
 /**
  * @memberOf ChartJSModule
  * @function
+ * @name pieChart
  * @desc function to build a pie chart
  * @param {string} title - chart title
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
@@ -34,7 +35,7 @@ const {
  *      (value, label) => alert(`the value ${value} belongs to ${label}`) // basic function in event on click
  * );
  */
-const pieChart = (
+module.exports = (
     title,
     htmlElementContainer,
     idElement,
@@ -97,5 +98,3 @@ const pieChart = (
 
     return pieChart;
 };
-
-module.exports = pieChart;

@@ -7,6 +7,7 @@ const {
 /**
  * @memberOf ChartJSModule
  * @function
+ * @name scatterChart
  * @desc function to build a scatter chart
  * @param {string} title - chart title
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
@@ -51,7 +52,7 @@ const {
  *      (value) => alert(`value is ${JSON.stringify(value)}`)
  * );
  */
-const scatterChart = (
+module.exports = (
     title,
     htmlElementContainer,
     idElement,
@@ -120,5 +121,3 @@ const scatterChart = (
 
     return scatterChart;
 };
-
-module.exports = scatterChart;

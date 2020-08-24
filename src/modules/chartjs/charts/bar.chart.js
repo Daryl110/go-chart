@@ -7,6 +7,7 @@ const {
 /**
  * @memberOf ChartJSModule
  * @function
+ * @name barChart
  * @desc function to build a bar chart
  * @param {string} title - chart title
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
@@ -47,7 +48,7 @@ const {
  *      ], // data
  * );
  */
-const barChart = (
+module.exports = (
     title,
     htmlElementContainer,
     idElement,
@@ -114,5 +115,3 @@ const barChart = (
 
     return barChart;
 };
-
-module.exports = barChart;

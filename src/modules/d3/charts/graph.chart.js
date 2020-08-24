@@ -1,15 +1,25 @@
-const d3 = require('d3/index');
+const {
+    d3,
+    drag,
+    color,
+    addTitleNode,
+    addTitleArch,
+    addArchFunctions,
+    addNodeFunctions,
+    appendChart
+} = require('../others/d3.graphCharts.utils');
 
 /**
  * @memberOf D3Module
  * @function
+ * @name graphChart
  * @desc function for create a graph chart
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
  * @param {string} idElement - chart id
  * @param {object} data - data to be plotted within the chart, with the structure:
  * <code>{
  *     nodes: [{ id: string, group: number }],
- *     arches: [{ source: string, target: string, value: object }]
+ *     arches: [{ source: string, target: string, value: object, ... }]
  * }</code>
  * @param {array} nodeFunctions - functions of each node within the chart, with the structure:
  * <code>nodeFunctions: [{ event: string // event type, handler: function // action to take }]</code>
@@ -49,7 +59,7 @@ const d3 = require('d3/index');
  *    }
  * );
  */
-const graphChart = (
+module.exports = (
     htmlElementContainer,
     idElement,
     data,
@@ -59,11 +69,10 @@ const graphChart = (
     height = 500,
     backgroundColor = 'white'
 ) => {
-    const svg = d3.create('svg');
-
-    svg.attr('height', height);
-    svg.attr('width', width);
-    svg.style('background-color', backgroundColor);
+    const svg = d3.create('svg')
+        .attr('height', height)
+        .attr('width', width)
+        .style('background-color', backgroundColor);
 
     const links = data.arches.map(d => Object.create(d));
     const nodes = data.nodes.map(d => Object.create(d));
@@ -72,32 +81,6 @@ const graphChart = (
         .force('link', d3.forceLink(links).id(d => d.id))
         .force('charge', d3.forceManyBody())
         .force('center', d3.forceCenter(width / 2, height / 2));
-
-    const color = () => {
-        const scale = d3.scaleOrdinal(d3.schemeCategory10);
-        return d => scale(d.group);
-    };
-
-    const drag = (simulation) => {
-        const dragstart = (d) => {
-            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-            d.fx = d.x;
-            d.fy = d.y;
-        };
-        const dragged = (d) => {
-            d.fx = d3.event.x;
-            d.fy = d3.event.y;
-        };
-        const dragend = (d) => {
-            if (!d3.event.active) simulation.alphaTarget(0);
-            d.fx = null;
-            d.fy = null;
-        };
-
-        return d3.drag().on('start', dragstart)
-            .on('drag', dragged)
-            .on('end', dragend);
-    };
 
     const link = svg.append('g')
         .attr('stroke', '#999')
@@ -117,14 +100,10 @@ const graphChart = (
         .attr('fill', color(nodes))
         .call(drag(simulation));
 
-    link.append('title')
-        .text(d => `Source: ${d.source}\nTarget: ${d.target}\nValue: ${d.value}`);
-
-    node.append('title')
-        .text(d => d.title ? d.title : d.id);
-
-    nodeFunctions.forEach(({ event, handler }) => node.on(event, handler));
-    archesFunctions.forEach(({ event, handler }) => link.on(event, handler));
+    addTitleArch(link, data);
+    addTitleNode(node);
+    addNodeFunctions(nodeFunctions, node, data);
+    addArchFunctions(archesFunctions, link, data);
 
     simulation.on('tick', () => {
         link.attr('x1', d => d.source.x)
@@ -136,10 +115,5 @@ const graphChart = (
             .attr('cy', d => d.y);
     });
 
-    const chart = svg.node();
-    chart.id = idElement;
-
-    htmlElementContainer.append(chart);
-}
-
-module.exports = graphChart;
+    appendChart(svg, idElement, htmlElementContainer);
+};

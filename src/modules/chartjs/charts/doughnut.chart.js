@@ -7,6 +7,7 @@ const {
 /**
  * @memberOf ChartJSModule
  * @function
+ * @name doughnutChart
  * @desc function to build a doughnut chart
  * @param {string} title - chart title
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
@@ -31,7 +32,7 @@ const {
  *    [[58, 90, 50], [50, 20, 20]], // data
  * );
  */
-const doughnutChart = (
+module.exports = (
     title,
     htmlElementContainer,
     idElement,
@@ -98,5 +99,3 @@ const doughnutChart = (
 
     return doughnutChart;
 };
-
-module.exports = doughnutChart;

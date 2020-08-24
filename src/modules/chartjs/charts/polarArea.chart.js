@@ -7,6 +7,7 @@ const {
 /**
  * @memberOf ChartJSModule
  * @function
+ * @name polarAreaChart
  * @desc function to build a polar area chart, it should be noted that although more than 1 dataset can be handled,
  * it is not recommended to do so, since the data could be visual obfuscated
  * @param {string} title - chart title
@@ -37,7 +38,7 @@ const {
  *    (value, label) => alert(`value: ${value} - label: ${label}`) // basic function in event on click
  * );
  */
-const polarAreaChart = (
+module.exports = (
     title,
     htmlElementContainer,
     idElement,
@@ -131,5 +132,3 @@ const polarAreaChart = (
 
     return polarAreaChart;
 };
-
-module.exports = polarAreaChart;
