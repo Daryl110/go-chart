@@ -7,6 +7,7 @@ const {
 /**
  * @memberOf ChartJSModule
  * @function
+ * @name radarChart
  * @desc function to build a radar chart
  * @param {string} title - chart title
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
@@ -48,7 +49,7 @@ const {
  *      (value, label) => alert(`value: ${value} - label: ${label}`) // onclick basic function
  * );
  */
-const radarChart = (
+module.exports = (
     title,
     htmlElementContainer,
     idElement,
@@ -113,5 +114,3 @@ const radarChart = (
 
     return radarChart;
 };
-
-module.exports = radarChart;

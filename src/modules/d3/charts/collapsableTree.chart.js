@@ -1,8 +1,12 @@
-const d3 = require('d3/index');
+const {
+    appendChart,
+    d3
+} = require('../others/d3.utils');
 
 /**
  * @memberOf D3Module
  * @function
+ * @name collapsableTreeChart
  * @desc function for create a collapsable tree chart
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
  * @param {string} idElement - chart id
@@ -81,7 +85,7 @@ const d3 = require('d3/index');
  *   }
  * );
  */
-const collapsableTreeChart = (
+module.exports = (
     htmlElementContainer,
     idElement,
     data,
@@ -199,14 +203,8 @@ const collapsableTreeChart = (
             d.x0 = d.x;
             d.y0 = d.y;
         });
-    }
+    };
 
     update(root);
-
-    const chart = svg.node();
-    chart.id = idElement;
-
-    htmlElementContainer.append(chart);
+    appendChart(svg, idElement, htmlElementContainer);
 }
-
-module.exports = collapsableTreeChart;

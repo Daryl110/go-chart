@@ -7,6 +7,7 @@ const {
 /**
  * @memberOf ChartJSModule
  * @function
+ * @name lineChart
  * @desc function to build a line chart
  * @param {string} title - chart title
  * @param {HTMLBodyElement} htmlElementContainer - container html element, where the chart is inserted
@@ -60,7 +61,7 @@ const {
  *   ], // data
  * );
  */
-const lineChart = (
+module.exports = (
     title,
     htmlElementContainer,
     idElement,
@@ -129,5 +130,3 @@ const lineChart = (
 
     return lineChart;
 };
-
-module.exports = lineChart;

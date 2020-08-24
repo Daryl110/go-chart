@@ -10,6 +10,7 @@
       "./src/modules",
       "./src/modules/d3",
       "./src/modules/d3/charts",
+      "./src/modules/d3/others",
       "./src/modules/chartjs",
       "./src/modules/chartjs/charts",
       "./src/modules/chartjs/others",

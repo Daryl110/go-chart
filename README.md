@@ -14,6 +14,7 @@ go-chart is a project in development, which allows by calling a simple function 
 * [D3](https://d3js.org/)
     * [collapsible tree chart](https://github.com/Daryl110/go-chart/wiki#collapsible-tree-chart)
     * [graph chart](https://github.com/Daryl110/go-chart/wiki#graph-chart)
+    * [directional graph chart](https://github.com/Daryl110/go-chart/wiki#directional-graph-chart)
     
 # GET STARTED
 
