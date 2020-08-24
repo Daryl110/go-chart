@@ -1,6 +1,6 @@
 {
   "name": "@daryl110/go-chart",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "library to easily build charts",
   "main": "index.js",
   "author": "daryl110",
