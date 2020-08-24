@@ -36,4 +36,4 @@ go-chart is a project in development, which allows by calling a simple function 
 
   <code>module.chart(\<parameters\>);</code>
   
-  [more info](https://daryl110.github.io/go-chart-doc/index.html)
+  [more info](https://daryl110.github.io/go-chart-doc)
