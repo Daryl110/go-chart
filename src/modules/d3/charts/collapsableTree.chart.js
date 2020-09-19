@@ -14,6 +14,7 @@ const {
  * <code>{ name: string, children: array[data] }</code>
  * @param {number} width - chart width inside the container
  * @param {number} height - chart height inside the container
+ * @param {Object} margin - view box container
  * @param {string} backgroundColor - background color for the chart
  * @example D3.collapsableTreeChart(
  *    document.getElementById('charts'),
@@ -91,11 +92,11 @@ module.exports = (
     data,
     width = 1050,
     height = 300,
+    margin = { top: 10, right: 120, bottom: 10, left: 120 },
     backgroundColor = 'white'
 ) => {
     const root = d3.hierarchy(data);
     const dx = 10, dy = 159;
-    const margin = ({top: 10, right: 120, bottom: 10, left: 40});
     const diagonal = d3.linkHorizontal().x(d => d.y).y(d => d.x);
     const tree = d3.tree().nodeSize([dx, dy]);
 
@@ -136,8 +137,6 @@ module.exports = (
             if (node.x < left.x) left = node;
             if (node.x > right.x) right = node;
         });
-
-        const height = right.x - left.x + margin.top + margin.bottom;
 
         const transition = svg.transition()
             .duration(duration)
