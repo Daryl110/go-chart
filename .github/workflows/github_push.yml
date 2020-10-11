@@ -15,8 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
         with:
-          persist-credentials: false
-          fetch-depth: 0
+          token: ${{ secrets.TOKEN_PUSH }}
       - uses: actions/setup-node@master
         with:
           node-version: '10.x'
@@ -24,29 +23,17 @@ jobs:
         run: npm install
       - name: Generate documentation
         run: npm run doc
-      - name: Ignore files
+      - name: Config repo
         run: |
-          echo "src" >> .gitignore
-          echo "CODE_OF_CONDUCT.md" >> .gitignore
-          echo "index.js" >> .gitignore
-          echo "jsdoc.json" >> .gitignore
-          echo "LICENSE" >> .gitignore
-          echo "package.json" >> .gitignore
-          echo "package-lock.json" >> .gitignore
-          echo "README.md" >> .gitignore
-          echo "tsconfig.json" >> .gitignore
-          echo ".github" >> .gitignore
-      - name: commit files
+          cd ./docs
+          git config --local user.email "${{ secrets.USER_ACTION_EMAIL }}"
+          git config --local user.name "${{ secrets.USER_ACTION_NAME }}"
+          git init
+      - name: Commit and push files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Github Action"
-          git add .gitignore
-          git add docs -f
-          git commit -m "add docs files" -a
-      - name: Push docs
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{secrets.TOKEN_PUSH}}
-          directory: docs
-          repository: Daryl110/go-chart-doc
-          force: true
+          cd ./docs
+          git config --local user.email "${{ secrets.USER_ACTION_EMAIL }}"
+          git config --local user.name "${{ secrets.USER_ACTION_NAME }}"
+          git add .
+          git commit -m "test"
+          git push -u https://${{ secrets.USER_NAME }}:${{ secrets.TOKEN_PUSH }}@github.com/${{ secrets.USER_NAME }}/${{ secrets.REPO_DOCS_NAME }}.git master -f
