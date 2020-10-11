@@ -279,7 +279,7 @@ module.exports = (
                 typeSetSVG.push(d.type);
             }
 
-            auxPositionLegend += 8;
+            auxPositionLegend += 20;
 
             return colorScale;
         })

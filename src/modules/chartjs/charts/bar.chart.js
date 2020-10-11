@@ -24,9 +24,9 @@ const {
  *           ?backgroundOpacity: boolean
  *         }
  * ]</code>
- * @param {boolean} horizontal - Boolean that demarcates whether the chart is horizontal or not
- * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
- * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @param {boolean=} [horizontal=false] - Boolean that demarcates whether the chart is horizontal or not
+ * @param {string=} [positionOfLegend='top'] - legend position, which can be (top | bottom | left | right)
+ * @param {ChartJSModule.chartJSUtils.reusableOnClickFunction=} [clickEventForEachElement=null] - callback function on event click on chart element
  * @return {*|{}}
  * @example chartJS.barChart(
  *      'bar-chart', // title of chart

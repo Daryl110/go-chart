@@ -1,0 +1,52 @@
+name: github_push
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    types: [ closed ]
+    branches: [ master ]
+
+jobs:
+  push-docs:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@master
+        with:
+          node-version: '10.x'
+      - name: Dependency install
+        run: npm install
+      - name: Generate documentation
+        run: npm run doc
+      - name: Ignore files
+        run: |
+          echo "src" >> .gitignore
+          echo "CODE_OF_CONDUCT.md" >> .gitignore
+          echo "index.js" >> .gitignore
+          echo "jsdoc.json" >> .gitignore
+          echo "LICENSE" >> .gitignore
+          echo "package.json" >> .gitignore
+          echo "package-lock.json" >> .gitignore
+          echo "README.md" >> .gitignore
+          echo "tsconfig.json" >> .gitignore
+          echo ".github" >> .gitignore
+      - name: commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Action"
+          git add .gitignore
+          git add docs -f
+          git commit -m "add docs files" -a
+      - name: Push docs
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{secrets.TOKEN_PUSH}}
+          directory: docs
+          repository: Daryl110/go-chart-doc
+          force: true

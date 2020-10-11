@@ -7,12 +7,20 @@ const numUtils = require('../../../utils/num.utils');
 const chartJS = require('chart.js');
 
 /**
- * @name ChartJSModule.chartJSUtils.reusableOnClickFunction
+ * @callback
  * @function
+ * @name ChartJSModule.chartJSUtils.reusableOnClickFunction
  * @desc reusable function that allows to use onclick function in different instances
  * @param {Object} $event - description of the event onclick
  * @param {Object} chart - constructed chart
- * @param {function} clickEventForEachElement - callback function that receives the basic values
+ * @param {function} clickEventForEachElement - callback function that receives the basic values:
+ * <ul>
+ *  <li>value => value of the data that was clicked</li>
+ *  <li>label => value of the label that was clicked</li>
+ *  <li>datasetIndex => dataset to which the data belongs</li>
+ *  <li>index => index of the data within the dataset</li>
+ *  <li>chart => chart object that contains all the information about it</li>
+ * </ul>
  * @return {null|*}
  */
 const reusableOnClickFunction = ($event, chart, clickEventForEachElement) => {
@@ -34,7 +42,7 @@ const reusableOnClickFunction = ($event, chart, clickEventForEachElement) => {
  * @param {number} red - number between 0 and 255 that represents the amount of red within the rgba
  * @param {number} green - number between 0 and 255 that represents the amount of green within the rgba
  * @param {number} blue - number between 0 and 255 that represents the amount of blue within the rgba
- * @param {number} opacity - number between 0 and 1 that represents the amount of opacity within the rgba
+ * @param {number=} [opacity=1] - number between 0 and 1 that represents the amount of opacity within the rgba
  * @returns {string} value rgba color
  * @example createColor({
  *     red: 255,
@@ -56,9 +64,9 @@ const createColor = (
  * @name ChartJSModule.chartJSUtils.createDatasetColor
  * @function
  * @desc function to create colors inside datasets
- * @param {string} backgroundColor - background color for a dataset
- * @param {string} borderColor - border color for a dataset
- * @param {boolean} backgroundOpacity - background color opacity is true or false
+ * @param {string=} [backgroundColor=null] - background color for a dataset
+ * @param {string=} [borderColor=null] - border color for a dataset
+ * @param {boolean=} [backgroundOpacity=false] - background color opacity is true or false
  * @returns {{borderColorLabelItem: (string|undefined), backgroundColorLabelItem: string}} colors to dataset
  */
 const createDatasetColor = (
