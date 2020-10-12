@@ -19,22 +19,30 @@ go-chart is a project in development, which allows by calling a simple function 
     
 # GET STARTED
 
+### Preview Visualization
+
+  [preview](https://pruebas-graph.web.app/)
+
 ### install
 
-   <code>npm i @daryl110/go-chart</code>
+    npm i @daryl110/go-chart
    
 ### implement
    <ul>
-      <li>typescript or ecma</li>
-      <code>import { D3, chartJS } from '@daryl110/go-chart';</code>
-      <li>nodejs</li>
-      <code>const { D3, chartJS } = require('@daryl110/go-chart');</code>
+      <li>
+        <h5>typescript or ecma</h5>
+        <code>import { D3, chartJS } from '@daryl110/go-chart';</code>
+      </li>
+      <li>
+        <h5>nodejs</h5>
+        <code>const { D3, chartJS } = require('@daryl110/go-chart');</code>
+      </li>
    </ul>
    
 ### usage
 
   To use the go-chart library it consists of the following, each library implemented within it is called a module and each public function of each graphical module is called a     graph, taking into account:
 
-  <code>module.chart(\<parameters\>);</code>
+    module.chart(<parameters>);
   
   [more info](https://daryl110.github.io/go-chart-doc)
