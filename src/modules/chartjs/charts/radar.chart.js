@@ -24,9 +24,10 @@ const {
  *           backgroundOpacity: boolean
  *         }
  * ]</code>
- * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
- * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @param {string=} [positionOfLegend='top'] - legend position, which can be (top | bottom | left | right)
+ * @param {ChartJSModule.chartJSUtils.reusableOnClickFunction=} [clickEventForEachElement=() => {}] - callback function on event click on chart element
  * @returns {*|{}}
+ * @see <img src="https://i.imgur.com/WLP3hJl.jpg"></img>
  * @example chartJS.radarChart(
  *      'radar-chart', // title of chart
  *      document.getElementById('charts'), // id of container of the chart

@@ -21,13 +21,14 @@ const {
  *     nodes: [{ id: string, group: number }],
  *     arches: [{ source: string, target: string, value: object, ... }]
  * }</code>
- * @param {array} nodeFunctions - functions of each node within the chart, with the structure:
- * <code>nodeFunctions: [{ event: string // event type, handler: function // action to take }]</code>
- * @param {array} archesFunctions - functions of each arch within the chart, with the structure:
- * <code>archesFunctions: [{ event: string // event type, handler: function // action to take }]</code>
- * @param {number} width - chart width inside the container
- * @param {number} height - chart height inside the container
- * @param {string} backgroundColor - background color for the chart
+ * @param {array=} [nodeFunctions=[]] - functions of each node within the chart, with the structure:
+ * <code>nodeFunctions: [{ event: string // event type, handler: function(node?) // action to take }]</code>
+ * @param {array=} [archesFunctions=[]] - functions of each arch within the chart, with the structure:
+ * <code>archesFunctions: [{ event: string // event type, handler: function(arch?) // action to take }]</code>
+ * @param {number=} [width=500] - chart width inside the container
+ * @param {number=} [height=500] - chart height inside the container
+ * @param {string=} [backgroundColor='white'] - background color for the chart
+ * @see <img src="https://i.imgur.com/byHuczW.jpg"></img>
  * @example D3.graphChart(
  *   document.getElementById('charts'),
  *   'graph_chart',

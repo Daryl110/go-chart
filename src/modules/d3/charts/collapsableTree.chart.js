@@ -12,10 +12,11 @@ const {
  * @param {string} idElement - chart id
  * @param {object} data - data to be plotted within the chart, with the structure:
  * <code>{ name: string, children: array[data] }</code>
- * @param {number} width - chart width inside the container
- * @param {number} height - chart height inside the container
- * @param {Object} margin - view box container
- * @param {string} backgroundColor - background color for the chart
+ * @param {number=} [width=1050] - chart width inside the container
+ * @param {number=} [height=300] - chart height inside the container
+ * @param {Object=} [margin={ top: 10, right: 120, bottom: 10, left: 120 }] - view box container
+ * @param {string=} [backgroundColor='white'] - background color for the chart
+ * @see <img src="https://i.imgur.com/cOzfwr9.jpg"></img>
  * @example D3.collapsableTreeChart(
  *    document.getElementById('charts'),
  *    'collapsable_tree_chart',

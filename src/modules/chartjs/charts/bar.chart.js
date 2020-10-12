@@ -26,8 +26,9 @@ const {
  * ]</code>
  * @param {boolean=} [horizontal=false] - Boolean that demarcates whether the chart is horizontal or not
  * @param {string=} [positionOfLegend='top'] - legend position, which can be (top | bottom | left | right)
- * @param {ChartJSModule.chartJSUtils.reusableOnClickFunction=} [clickEventForEachElement=null] - callback function on event click on chart element
+ * @param {ChartJSModule.chartJSUtils.reusableOnClickFunction=} [clickEventForEachElement=() => {}] - callback function on event click on chart element
  * @return {*|{}}
+ * @see <img src="https://i.imgur.com/oDpBanV.jpg"></img>
  * @example chartJS.barChart(
  *      'bar-chart', // title of chart
  *      document.getElementById('charts'), // id of container of the chart
