@@ -20,10 +20,11 @@ const {
  *        ...
  *     ]
  * </code>
- * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
- * @param {array} backgroundColor - array of colors rgba with length equal to data length
- * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @param {string=} [positionOfLegend='top'] - legend position, which can be (top | bottom | left | right)
+ * @param {array} [backgroundColor=null] - array of colors rgba with length equal to data length
+ * @param {ChartJSModule.chartJSUtils.reusableOnClickFunction=} [clickEventForEachElement=() => {}] - callback function on event click on chart element
  * @returns {*|{}}
+ * @see <img src="https://i.imgur.com/2DiFYJ8.jpg"></img>
  * @example chartJS.pieChart(
  *      'pie-chart', // title of chart
  *      document.getElementById('charts'), // id of container of the chart

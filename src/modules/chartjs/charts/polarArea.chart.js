@@ -21,11 +21,12 @@ const {
  *        ...
  *     ]
  * </code>
- * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
- * @param {array} backgroundColor - array of colors rgba with length equal to data length
- * @param {boolean} backgroundOpacity - boolean that marks if the background color is opaque
- * @param {function} clickEventForEachElement - callback function on event click on chart element
+ * @param {string=} [positionOfLegend='top'] - legend position, which can be (top | bottom | left | right)
+ * @param {array=} [backgroundColor=null] - array of colors rgba with length equal to data length
+ * @param {boolean=} [backgroundOpacity=false] - boolean that marks if the background color is opaque
+ * @param {ChartJSModule.chartJSUtils.reusableOnClickFunction=} [clickEventForEachElement=() => {}] - callback function on event click on chart element
  * @returns {*|{}}
+ * @see <img src="https://i.imgur.com/ef89LUB.jpg"></img>
  * @example chartJS.polarAreaChart(
  *    'polar-area-chart', // title of chart
  *    document.getElementById('charts'), // id of container of the chart

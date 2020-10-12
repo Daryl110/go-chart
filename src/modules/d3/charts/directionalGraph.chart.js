@@ -21,15 +21,18 @@ const {
  *     nodes: [{ id: string, group: number }],
  *     arches: [{ source: string, target: string, type: string, ... }]
  * }</code>
- * @param {boolean} showIds - it'll show id for each node
- * @param {array} nodeFunctions - functions of each node within the chart, with the structure:
- * <code>nodeFunctions: [{ event: string // event type, handler: function // action to take }]</code>
- * @param {array} archesFunctions - functions of each arch within the chart, with the structure:
- * <code>archesFunctions: [{ event: string // event type, handler: function // action to take }]</code>
- * @param {number} width - chart width inside the container
- * @param {number} height - chart height inside the container
- * @param {string} backgroundColor - background color for the chart
- * @example D3.directionalGraphChart(
+ * @param {boolean=} [showIds=false] - it'll show id for each node
+ * @param {number=} [spaceOfLegend=[]] - space between legends
+ * @param {array=} [nodeFunctions=[]] - functions of each node within the chart, with the structure:
+ * <code>nodeFunctions: [{ event: string // event type, handler: function(node?) // action to take }]</code>
+ * @param {array=} [archesFunctions=null] - functions of each arch within the chart, with the structure:
+ * <code>archesFunctions: [{ event: string // event type, handler: function(arch?) // action to take }]</code>
+ * @param {number=} [width=500] - chart width inside the container
+ * @param {number=} [height=500] - chart height inside the container
+ * @param {string=} [backgroundColor='white'] - background color for the chart
+ * @see <img src="https://i.imgur.com/hZxqGSc.jpg"></img>
+ * @example
+ * D3.directionalGraphChart(
  *   document.getElementById('charts'),
  *   'chart',
  *   {
@@ -193,6 +196,7 @@ module.exports = (
     showIds = false,
     nodeFunctions = [],
     archesFunctions = [],
+    spaceOfLegend = undefined,
     width = 500,
     height = 500,
     backgroundColor = 'white'
@@ -279,7 +283,7 @@ module.exports = (
                 typeSetSVG.push(d.type);
             }
 
-            auxPositionLegend += 20;
+            auxPositionLegend += spaceOfLegend ? spaceOfLegend : ( ( - ( posX + posY ) / 10 ) / 5 );
 
             return colorScale;
         })

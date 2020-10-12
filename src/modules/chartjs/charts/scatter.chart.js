@@ -23,9 +23,10 @@ const {
  *           width: number // width of bubble
  *         }
  * ]</code>
- * @param {string} positionOfLegend - legend position, which can be (top | bottom | left | right)
- * @param {function} clickEventForEachElement - callback function on event click on chart element
- * @return {*|{}}
+ * @param {string=} [positionOfLegend='top'] - legend position, which can be (top | bottom | left | right)
+ * @param {ChartJSModule.chartJSUtils.reusableOnClickFunction=} [clickEventForEachElement=() => {}] - callback function on event click on chart element
+ * @returns {*|{}}
+ * @see <img src="https://i.imgur.com/gKpaGAK.jpg"></img>
  * @example chartJS.scatterChart(
  *      'scatter-chart',
  *      document.getElementById('charts'),
