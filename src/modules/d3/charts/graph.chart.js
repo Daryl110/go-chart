@@ -98,7 +98,7 @@ module.exports = (
         .data(nodes)
         .join('circle')
         .attr('r', 5)
-        .attr('fill', color(nodes))
+        .attr('fill', color())
         .call(drag(simulation));
 
     addTitleArch(link, data);
