@@ -134,21 +134,24 @@ module.exports = (
 
         let left = root;
         let right = root;
+
         root.eachBefore(node => {
             if (node.x < left.x) left = node;
             if (node.x > right.x) right = node;
         });
 
+        const height1 = right.x - left.x + margin.top + margin.bottom;
+
         const transition = svg.transition()
             .duration(duration)
-            .attr('viewBox', [-margin.left, left.x - margin.top, width, height])
-            .tween('resize', window.ResizeObserver ? null : () => () => svg.dispatch('toggle'));
+            .attr('viewBox', [-margin.left, left.x - margin.top, width, height1])
+            .tween('resize', window.ResizeObserver ? null : () => svg.dispatch('toggle'));
 
         const node = gNode.selectAll('g')
             .data(nodes, d => d.id);
 
         const nodeEnter = node.enter().append('g')
-            .attr('transform', d => `translate(${source.y0},${source.x0})`)
+            .attr('transform', () => `translate(${source.y0},${source.x0})`)
             .attr('fill-opacity', 0)
             .attr('stroke-opacity', 0)
             .on('click', d => {
@@ -177,7 +180,7 @@ module.exports = (
             .attr('stroke-opacity', 1);
 
         node.exit().transition(transition).remove()
-            .attr('transform', d => `translate(${source.y},${source.x})`)
+            .attr('transform', () => `translate(${source.y},${source.x})`)
             .attr('fill-opacity', 0)
             .attr('stroke-opacity', 0);
 
@@ -185,9 +188,9 @@ module.exports = (
             .data(links, d => d.target.id);
 
         const linkEnter = link.enter().append('path')
-            .attr('d', d => {
-                const o = {x: source.x0, y: source.y0};
-                return diagonal({source: o, target: o});
+            .attr('d', () => {
+                const o = { x: source.x0, y: source.y0 };
+                return diagonal({ source: o, target: o });
             });
 
         link.merge(linkEnter).transition(transition)
@@ -195,8 +198,8 @@ module.exports = (
 
         link.exit().transition(transition).remove()
             .attr('d', () => {
-                const o = {x: source.x, y: source.y};
-                return diagonal({source: o, target: o});
+                const o = { x: source.x, y: source.y };
+                return diagonal({ source: o, target: o });
             });
 
         root.eachBefore(d => {
