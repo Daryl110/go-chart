@@ -21,7 +21,7 @@ go-chart is a project in development, which allows by calling a simple function 
 
 ### Preview Visualization
 
-  [preview](https://pruebas-graph.web.app/)
+  [preview](https://pruebas-graph.firebaseapp.com/)
 
 ### install
 
